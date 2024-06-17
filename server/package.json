@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "\"Serves requests to React client\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "author": "0binny0",
+  "license": "ISC"
+}

@@ -8,10 +8,19 @@ app.listen();
 test(
     `Verify that GET /dates/:date returns a JSON response
     containing the UNIX & UTC version of a date in YYYY-MM-DD`, async () => {
+        const response = await request(app).get("/api/dates/1970-02-02").connect("127.0.0.1");
+        expect(response.status).toBe(200);
+        expect(response.type).toBe("application/json");
+        expect(response.body).toEqual({"unix":2764800000,"utc":"Mon, 02 Feb 1970 00:00:00 GMT"});
+    }
+);
+
+test(
+    `Verify that GET /dates/:date returns a JSON response
+    containing the UNIX & UTC version of a date in milliseconds`, async () => {
         const response = await request(app).get("/api/dates/2823728491").connect("127.0.0.1");
         expect(response.status).toBe(200);
         expect(response.type).toBe("application/json");
         expect(response.body).toEqual({"unix":2823728491,"utc":"Mon, 02 Feb 1970 16:22:08 GMT"});
     }
 );
-

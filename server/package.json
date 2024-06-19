@@ -4,6 +4,7 @@
   "description": "\"Serves requests to React client\"",
   "main": "index.js",
   "scripts": {
+    "build": "echo Building Functions",
     "test": "vitest"
   },
   "author": "0binny0",

@@ -37,7 +37,7 @@ test(
 );
 
 test.each([
-    ["2021-07-83", "day"], ["2018-21-12", "month"], ["238942348-12-02", "year"]
+    ["2021-07-8312", "day"], ["2018-210-12", "month"], ["238942348-12-02", "year"]
 ])(
     `Verify that GET /dates/:date returns a JSON response
     containing an error detailing the date (YYYY-MM-DD)
@@ -45,6 +45,18 @@ test.each([
         const response = await request(app).get(`/api/dates/${date}`).connect("127.0.0.1");
         expect(response.status).toBe(200);
         expect(response.type).toBe("application/json");
-        expect(response.body).toEqual({"error": "Whoops...the date provided is invalid!"});
+        expect(response.body).toEqual({"error": "That is not an accepted date (or even a date at all)!"});
+    }
+);
+
+test.each(
+    [".4sdfh8923sf.sdkfjsdufa80sduf7", "1928-IS-.*hd", "2182^832111&92", "sipvspt"]
+)(`
+    Verify that GET /dates/%s returns a JSON response containing
+    an error detailing a formatting error with the date
+    `, async (date) => {
+        const response = await request(app).get(`/api/dates/${date}`).connect("127.0.0.1");
+        expect(response.type).toBe("application/json");
+        expect(response.body).toEqual({"error": "That is not an accepted date (or even a date at all)!"});
     }
 );

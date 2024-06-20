@@ -1,5 +1,5 @@
 
-const express = require("express");
+import express from "express";
 import {get_timestamps} from "../../../handlers.js";
 
 const dates_router = express.Router();

@@ -6,6 +6,6 @@ import serverless from "serverless-http";
 const app = express();
 app.use("/api/", dates_router);
 
-app.listen(3000);
+// app.listen(3000);
 const handler = serverless(app);
 export {app, handler};

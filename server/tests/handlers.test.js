@@ -1,7 +1,7 @@
 
 import {test, expect, vi} from "vitest";
 
-import {get_timestamps} from "../handlers";
+import {get_timestamps} from "../handlers.js";
 
 test(
     `Verify that get_timestamps returns a JSON string

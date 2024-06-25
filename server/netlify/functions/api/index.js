@@ -1,6 +1,6 @@
 
 import express from "express";
-import {cors} from "cors";
+const cors = require("cors");
 import serverless from "serverless-http";
 
 import {dates_router} from "./date.js";

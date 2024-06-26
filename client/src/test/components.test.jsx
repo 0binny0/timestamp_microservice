@@ -1,10 +1,10 @@
 
 import {test, expect} from "vitest";
-import {render, screen} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 
 import {MemoryRouter} from "react-router-dom";
 
-import {Home} from "../components.jsx";
+import {Home, Timestamps} from "../components.jsx";
 
 test(
     `
@@ -23,5 +23,30 @@ test(
         expect(heading).toBeVisible();
         expect(date1_example).toBeVisible();
         expect(date2_example).toBeVisible();
+    }
+);
+
+test(
+    `
+        Verify that <Timestamps /> shows the UTC & UNIX of versions
+        on an accepted date
+    `, async () => {
+        render(
+            <MemoryRouter initialEntries={["/-1723482374"]}>
+                <Timestamps />
+            </MemoryRouter>
+        )
+        const pending_sign = screen.getByText("Timestamps pending...");
+        expect(pending_sign).toHaveClass("timestamp_pending_msg");
+        await waitFor(() => {
+            const timestamp = screen.getByText(/UTC timestamp:/);
+            expect(timestamp).toHaveTextContent("Fri, 12 Dec 1969 01:15:17 GMT");
+            expect(timestamp).toHaveClass("timestamp");
+        }, {timeout: 2000});
+        await waitFor(() => {
+            const timestamp = screen.getByText(/UNIX timestamp:/);
+            expect(timestamp).toHaveTextContent("-1723482374");
+            expect(timestamp).toHaveClass("timestamp");
+        }, {timeout: 2000})
     }
 );

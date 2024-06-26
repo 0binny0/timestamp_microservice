@@ -9,7 +9,7 @@
 [build]
   command = "echo Building Functions"
   functions = "netlify/functions"
-#[[headers]]
-#  for = "/*"
-#    [headers.values]
-#    Access-Control-Allow-Origin = "*"
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"

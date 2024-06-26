@@ -21,7 +21,7 @@ const handlers = [
         return HttpResponse.json({unix: "-1723482374", utc: "Fri, 12 Dec 1969 01:15:17 GMT"});
     }),
     http.get("https://timestamps-microservice.netlify.app/api/dates/4782.*DD&S*1", () => {
-        delay(2000);git
+        delay(2000);
         return HttpResponse.json({error: "That is not an accepted date (or even a date at all)!"});
     })
 ];

@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: lightgrey;
+}
+
+.timestamp_wrapper, .status {
+    margin: auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.date_format, .date_example {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.date_wrapper {
+    margin: 20px 0;
+}
+
+a {
+    color: grey;
+}
+
+.error {
+    color: firebrick;
+}
+
+.pending {
+    animation: pending 1.5s infinite;
+}
+
+@keyframes pending {
+    0% {
+      color: black;
+    }
+    50% {
+       color: snow;
+    }
+    100% {
+        color: black;
+    }
+}

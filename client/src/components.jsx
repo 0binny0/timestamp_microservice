@@ -8,19 +8,20 @@ function Home() {
     return <>
         <section className="timestamp_wrapper">
             <h1 className="font_wrapper">Timestamp Generator</h1>
-            <p>Accepted date formats:</p>
-            <ul className="date_formats">
-                <li>YYYY-MM-DD
-                    <ul>
+            <p>Accepted date formats: Enter date in URL path /:date</p>
+            <ul className="date_format">
+                <li className="date_wrapper">YYYY-MM-DD
+                    <ul className="date_example">
                         <li><Link to="/1999-12-31">/1999-12-31</Link></li>
                     </ul>
                 </li>
-                <li>-8640000000000000 &gt;= date (in milliseconds) &lt;= 8640000000000000
-                    <ul>
+                <li className="date_wrapper">-8640000000000000 &gt;= date (in milliseconds) &lt;= 8640000000000000
+                    <ul className="date_example">
                         <li><Link to="/283247938183">/283247938183</Link></li>
                     </ul>
                 </li>
             </ul>
+            <hr />
         </section>
         <Switch>
             <Route path="/:date">
@@ -61,8 +62,11 @@ function Timestamps() {
                 className === "complete" ? <>
                     <p className="timestamp">UNIX timestamp: {data['unix']}</p>
                     <p className="timestamp">UTC timestamp: {data['utc']}</p>
-                </> : className === "error" ?
-                    <p className="timestamp_error">{data['error']}</p> :
+                </> : className === "error" ? <>
+                        <p className="timestamp_error">{data['error']}</p>
+                        <p>{params.date}</p>
+                    </>
+                     :
                     <p className="timestamp_pending_msg">Timestamps pending...</p>
             }
         </div>
